@@ -689,7 +689,8 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 
 	// run reload es_settings.cfg on game launch
 	Settings::getInstance()->loadFile();
-	InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
+	InputManager::getInstance()->computePlayersConfigs();
+	// InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
 	// todo put this in an if settings is set to do this
 	// todo maybe not reload the whole file and target inputs?
 
@@ -725,7 +726,8 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 
 	// run reload es_settings.cfg on game launch
 	Settings::getInstance()->loadFile();
-	InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
+	InputManager::getInstance()->computePlayersConfigs();
+	// InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
 	// todo put this in an if settings is set to do this
 	// todo maybe not reload the whole file and target inputs?
 	
