@@ -71,6 +71,8 @@ public:
 	void sendMouseClick(Window* window, int button);
 	InputConfig* getInputConfigByDevice(int deviceId);
 
+	std::map<int, InputConfig*> computePlayersConfigs();
+
 private:
 	InputManager();
 
@@ -94,7 +96,7 @@ private:
 
 	std::map<SDL_JoystickID, int*> mPrevAxisValues;
 	std::map<int, PlayerDeviceInfo> m_lastKnownPlayersDeviceIndexes;
-	std::map<int, InputConfig*> computePlayersConfigs();
+	// std::map<int, InputConfig*> computePlayersConfigs();
 
 	bool initialized() const;
 	bool loadInputConfig(InputConfig* config); // returns true if successfully loaded, false if not (or didn't exist)
