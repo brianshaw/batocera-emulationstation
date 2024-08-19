@@ -690,6 +690,7 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	// run reload es_settings.cfg on game launch
 	Settings::getInstance()->loadFile();
 	InputManager::getInstance()->configureEmulators();
+	
 	// InputManager::getInstance()->getInputConfigs();
 	// InputManager::getInstance()->computePlayersConfigs();
 	// InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
