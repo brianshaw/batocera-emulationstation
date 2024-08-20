@@ -741,7 +741,7 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	// InputManager::getInstance()->getInputConfigs();
 	// InputManager::getInstance()->computePlayersConfigs();
 	InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
-	std::string configuratedName = Settings::getInstance()->getString('INPUT P1GUID');
+	std::string configuratedName = Settings::getInstance()->getString("INPUT P1GUID");
 	LOG(LogError) << "TEST input configuratedName " << configuratedName;
 	// todo put this in an if settings is set to do this
 	// todo maybe not reload the whole file and target inputs?
