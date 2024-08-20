@@ -184,6 +184,8 @@ namespace Scripting
                 auto ext = Utils::String::toLower(Utils::FileSystem::getExtension(script.path));
                 if (_supportedExtensions.find(ext) == _supportedExtensions.cend())
                     continue;
+                
+                LOG(LogDebug) << "  script: " << script.path;
 
                 executeScript(script.path, eventName, arg1, arg2, arg3);
             }
