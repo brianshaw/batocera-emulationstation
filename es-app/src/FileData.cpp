@@ -685,7 +685,7 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	const std::string rom = Utils::FileSystem::getEscapedPath(getPath());
 	const std::string basename = Utils::FileSystem::getStem(getPath());
 	
-	Scripting::fireEvent("game-start", rom, basename, getName());
+	Scripting::fireEvent("pre-game-start", rom, basename, getName());
 
 	// run reload es_settings.cfg on game launch
 	Settings::getInstance()->loadFile();
@@ -695,7 +695,7 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 		std::string configuratedName = Settings::getInstance()->getString(Utils::String::format("INPUT P%iNAME", player + 1));
 		std::string configuratedGUID = Settings::getInstance()->getString(Utils::String::format("INPUT P%iGUID", player + 1));
 		LOG(LogError) << Utils::String::format("CONTROLLER %i", player + 1);
-		LOG(LogError) << "TEST configuratedName " << configuratedName << " - " << configuratedName;
+		LOG(LogError) << "TEST configuratedName " << configuratedName << " - " << configuratedGUID;
 
 	}
 	// InputManager::getInstance()->configureEmulators();
@@ -705,6 +705,8 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
 	// todo put this in an if settings is set to do this
 	// todo maybe not reload the whole file and target inputs?
+
+	Scripting::fireEvent("game-start", rom, basename, getName());
 
 	time_t tstart = time(NULL);
 
