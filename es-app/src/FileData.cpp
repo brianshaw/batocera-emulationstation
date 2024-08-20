@@ -690,13 +690,13 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	// run reload es_settings.cfg on game launch
 	Settings::getInstance()->loadFile();
 	LOG(LogError) << "TEST Error";
-	for (int player = 0; player < MAX_PLAYERS; player++)
-	{
-		std::string playerConfigPath = Settings::getInstance()->getString(Utils::String::format("INPUT P%iPATH", player + 1));
-		LOG(LogError) << "TEST 1";
-		LOG(LogError) << "TEST Error " << playerConfigPath;
+	// for (int player = 0; player < MAX_PLAYERS; player++)
+	// {
+	// 	std::string playerConfigPath = Settings::getInstance()->getString(Utils::String::format("INPUT P%iPATH", player + 1));
+	// 	LOG(LogError) << "TEST 1";
+	// 	LOG(LogError) << "TEST Error " << playerConfigPath;
 
-	}
+	// }
 	// InputManager::getInstance()->configureEmulators();
 
 	// InputManager::getInstance()->getInputConfigs();
@@ -741,8 +741,8 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	// InputManager::getInstance()->getInputConfigs();
 	// InputManager::getInstance()->computePlayersConfigs();
 	InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
-	std::string configuratedName = Settings::getInstance()->getString("INPUT P1GUID");
-	LOG(LogError) << "TEST input configuratedName " << configuratedName;
+	// std::string configuratedName = Settings::getInstance()->getString("INPUT P1GUID");
+	// LOG(LogError) << "TEST input configuratedName " << configuratedName;
 	// todo put this in an if settings is set to do this
 	// todo maybe not reload the whole file and target inputs?
 	
