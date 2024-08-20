@@ -463,6 +463,7 @@ bool ViewController::doLaunchGame(FileData* game, LaunchGameOptions options)
 
 	// Silence TTS when launching a game
 	TextToSpeech::getInstance()->say(" ");
+	TextToSpeech::getInstance()->say("hi");
 	LOG(LogError) << "TEST ViewController::doLaunchGame ...";
 	if (game->launchGame(mWindow, options))
 		if (game->getSourceFileData()->getSystemName() == "windows_installers")
