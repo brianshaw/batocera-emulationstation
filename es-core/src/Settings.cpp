@@ -455,6 +455,7 @@ bool Settings::saveFile()
 void Settings::loadFile()
 {
 	const std::string path = Paths::getUserEmulationStationPath() + "/es_settings.cfg";
+	LOG(LogError) << "Settings::loadFile() : Loading Settings from file at path - " << path;
 	if(!Utils::FileSystem::exists(path))
 		return;
 

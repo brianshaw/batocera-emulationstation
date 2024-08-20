@@ -690,19 +690,21 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	// run reload es_settings.cfg on game launch
 	Settings::getInstance()->loadFile();
 	LOG(LogError) << "TEST Error Brian";
+	// InputManager::getInstance()->configureEmulators();
+
+	// InputManager::getInstance()->getInputConfigs();
+	// InputManager::getInstance()->computePlayersConfigs();
+	InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
 	for (int player = 0; player < MAX_PLAYERS; player++)
 	{
 		std::string configuratedName = Settings::getInstance()->getString(Utils::String::format("INPUT P%iNAME", player + 1));
 		std::string configuratedGUID = Settings::getInstance()->getString(Utils::String::format("INPUT P%iGUID", player + 1));
 		LOG(LogError) << Utils::String::format("CONTROLLER %i", player + 1);
 		LOG(LogError) << "TEST configuratedName " << configuratedName << " - " << configuratedGUID;
-
+		// changed |= Settings::getInstance()->setString(confName, "DEFAULT");
+		// changed |= Settings::getInstance()->setString(confGuid, "");
+		// changed |= Settings::getInstance()->setString(confPath, "");
 	}
-	// InputManager::getInstance()->configureEmulators();
-
-	// InputManager::getInstance()->getInputConfigs();
-	// InputManager::getInstance()->computePlayersConfigs();
-	InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
 	// todo put this in an if settings is set to do this
 	// todo maybe not reload the whole file and target inputs?
 
