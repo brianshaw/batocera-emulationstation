@@ -692,9 +692,10 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	LOG(LogError) << "TEST Error Brian";
 	for (int player = 0; player < MAX_PLAYERS; player++)
 	{
-		std::string configuratedName = Settings::getInstance()->getString(Utils::String::format("INPUT P%iGUID", player + 1));
+		std::string configuratedName = Settings::getInstance()->getString(Utils::String::format("INPUT P%iNAME", player + 1));
+		std::string configuratedGUID = Settings::getInstance()->getString(Utils::String::format("INPUT P%iGUID", player + 1));
 		LOG(LogError) << Utils::String::format("CONTROLLER %i", player + 1);
-		LOG(LogError) << "TEST Error configuratedName " << configuratedName;
+		LOG(LogError) << "TEST configuratedName " << configuratedName << " - " << configuratedName;
 
 	}
 	// InputManager::getInstance()->configureEmulators();
