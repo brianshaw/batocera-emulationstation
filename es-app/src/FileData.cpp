@@ -690,8 +690,11 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	// run reload es_settings.cfg on game launch
 	Settings::getInstance()->loadFile();
 	LOG(LogError) << "TEST Error";
-	LOG(LogDebug) << "TEST Debug";
-	LOG(LogInfo) << "TEST Info";
+	for (int player = 0; player < MAX_PLAYERS; player++)
+	{
+		std::string playerConfigPath = Settings::getInstance()->getString(Utils::String::format("INPUT P%iPATH", player + 1));
+		LOG(LogError) << "TEST Error" << playerConfigPath;
+	}
 	// InputManager::getInstance()->configureEmulators();
 
 	// InputManager::getInstance()->getInputConfigs();
