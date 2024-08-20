@@ -662,7 +662,6 @@ std::string FileData::getMessageFromExitCode(int exitCode)
 
 bool FileData::launchGame(Window* window, LaunchGameOptions options)
 {
-	LOG(LogError) << "TEST Attempting to launch game...";
 	LOG(LogInfo) << "Attempting to launch game...";
 
 	FileData* gameToUpdate = getSourceFileData();
