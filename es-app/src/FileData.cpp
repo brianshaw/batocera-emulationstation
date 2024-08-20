@@ -736,8 +736,8 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	if (!p2kConv.empty()) // delete .keys file if it has been converted from p2k
 		Utils::FileSystem::removeFile(p2kConv);
 
-	Scripting::fireEvent("game-end");
-
+	Scripting::fireEvent("pre-game-end");
+	
 	// run reload es_settings.cfg on game launch
 	Settings::getInstance()->loadFile();
 	// InputManager::getInstance()->configureEmulators();
@@ -748,6 +748,9 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	// LOG(LogError) << "TEST input configuratedName " << configuratedName;
 	// todo put this in an if settings is set to do this
 	// todo maybe not reload the whole file and target inputs?
+
+	Scripting::fireEvent("game-end");
+
 	
 	if (!hideWindow && Settings::getInstance()->getBool("HideWindowFullReinit"))
 	{
