@@ -701,7 +701,7 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 
 	// InputManager::getInstance()->getInputConfigs();
 	InputManager::getInstance()->computePlayersConfigs();
-	// InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
+	InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
 	// todo put this in an if settings is set to do this
 	// todo maybe not reload the whole file and target inputs?
 
@@ -740,7 +740,7 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	// InputManager::getInstance()->configureEmulators();
 	// InputManager::getInstance()->getInputConfigs();
 	InputManager::getInstance()->computePlayersConfigs();
-	// InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
+	InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
 	// todo put this in an if settings is set to do this
 	// todo maybe not reload the whole file and target inputs?
 	
