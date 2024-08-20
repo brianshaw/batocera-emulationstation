@@ -370,7 +370,7 @@ void InputManager::rebuildAllJoysticks(bool deinit)
 
 		// add it to our list so we can close it again later
 		SDL_JoystickID joyId = SDL_JoystickInstanceID(joy);
-
+		LOG(LogError) << "Joystick " << idx << " : " << SDL_JoystickName(joy) << " (GUID: " << SDL_JoystickGetGUID(joy) << ", instance ID: " << joyId << ").";
 		mJoysticks.erase(joyId);
 		mJoysticks[joyId] = joy;
 
