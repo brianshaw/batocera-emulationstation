@@ -693,7 +693,9 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	for (int player = 0; player < MAX_PLAYERS; player++)
 	{
 		std::string playerConfigPath = Settings::getInstance()->getString(Utils::String::format("INPUT P%iPATH", player + 1));
-		LOG(LogError) << "TEST Error" << playerConfigPath;
+		LOG(LogError) << "TEST 1";
+		LOG(LogError) << "TEST Error " << playerConfigPath;
+
 	}
 	// InputManager::getInstance()->configureEmulators();
 
