@@ -685,7 +685,7 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	const std::string rom = Utils::FileSystem::getEscapedPath(getPath());
 	const std::string basename = Utils::FileSystem::getStem(getPath());
 
-	Scripting::fireEvent("pre-game-start", rom, basename, getName());
+	Scripting::fireEvent("pregame-start", rom, basename, getName());
 
 	// run reload es_settings.cfg on game launch
 	Settings::getInstance()->loadFile();
