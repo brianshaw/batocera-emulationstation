@@ -690,6 +690,8 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	// run reload es_settings.cfg on game launch
 	Settings::getInstance()->loadFile();
 	LOG(LogError) << "TEST Error";
+	LOG(LogDebug) << "TEST Debug";
+	LOG(LogInfo) << "TEST Info";
 	// InputManager::getInstance()->configureEmulators();
 
 	// InputManager::getInstance()->getInputConfigs();
