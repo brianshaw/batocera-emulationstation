@@ -46,6 +46,7 @@ GuiControllersAssignmentsPerEmulator::GuiControllersAssignmentsPerEmulator(Windo
 	Window* window = mWindow;
 
 	addGroup(_("TESTING"));
+	std::string systemName;
 
 	for (auto system : SystemData::sSystemVector)
 	{
@@ -54,7 +55,8 @@ GuiControllersAssignmentsPerEmulator::GuiControllersAssignmentsPerEmulator(Windo
 			// system->getName();
 			if (system->getName() != "all")
 			{
-				addEntry(system->getName(), true, [window, system->getName()] { GuiControllersAssignmentForEmulator::openControllersSettings(window); });
+				systemName = system->getName()
+				addEntry(systemName, true, [window, systemName] { GuiControllersAssignmentForEmulator::openControllersSettings(window); });
 				// addEntry(GuiControllersAssignmentsPerEmulator::getControllersSettingsLabel(), true, [window] { GuiControllersAssignmentsPerEmulator::openControllersSettings(window); }, "iconControllers");
 			}
 		}
