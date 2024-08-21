@@ -685,6 +685,7 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	const std::string rom = Utils::FileSystem::getEscapedPath(getPath());
 	const std::string basename = Utils::FileSystem::getStem(getPath());
 
+	InputManager::getInstance()->loadControllerDefaultsForSystem(system);
 	Scripting::fireEvent("game-start", rom, basename, getName());
 
 	time_t tstart = time(NULL);
@@ -715,6 +716,7 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	if (!p2kConv.empty()) // delete .keys file if it has been converted from p2k
 		Utils::FileSystem::removeFile(p2kConv);
 
+	InputManager::getInstance()->resetControllerDefaults();
 	Scripting::fireEvent("game-end");
 	
 	if (!hideWindow && Settings::getInstance()->getBool("HideWindowFullReinit"))

@@ -1311,3 +1311,34 @@ void InputManager::sendMouseClick(Window* window, int button)
 	window->input(getInputConfigByDevice(DEVICE_MOUSE), Input(DEVICE_MOUSE, TYPE_BUTTON, button, true, false));
 	window->input(getInputConfigByDevice(DEVICE_MOUSE), Input(DEVICE_MOUSE, TYPE_BUTTON, button, false, false));
 }
+
+void InputManager::loadControllerDefaultsForSystem(std::String systemName)
+{
+	for (int player = 0; player < MAX_PLAYERS; player++) 
+	{
+		// if (playerJoysticks.find(player) != playerJoysticks.cend())
+		// 	continue;
+
+		std::string systemPlayerConfigName = Settings::getInstance()->getString(Utils::String::format("%s INPUT P%iNAME", systemName, player + 1));
+		std::string systemPlayerConfigGuid = Settings::getInstance()->getString(Utils::String::format("%s INPUT P%iGUID", systemName,, player + 1));
+
+		// std::string playerConfigName = Settings::getInstance()->getString(Utils::String::format("INPUT P%iNAME", player + 1));
+		// std::string playerConfigGuid = Settings::getInstance()->getString(Utils::String::format("INPUT P%iGUID", player + 1));
+		Settings::getInstance()->setString(Utils::String::format("INPUT P%iNAME", player + 1), systemPlayerConfigName);
+		Settings::getInstance()->setString(Utils::String::format("INPUT P%iGUID", player + 1), systemPlayerConfigGuid);
+				// changed |= Settings::getInstance()->setString(confName, selected->name);
+				// changed |= Settings::getInstance()->setString(confGuid, selected->guid);
+				// changed |= Settings::getInstance()->setString(confPath, selected->path);
+	}
+	computeLastKnownPlayersDeviceIndexes();
+}
+
+void InputManager::resetControllerDefaults()
+{
+	for (int player = 0; player < MAX_PLAYERS; player++) 
+	{
+		Settings::getInstance()->setString(Utils::String::format("INPUT P%iNAME", player + 1), "");
+		Settings::getInstance()->setString(Utils::String::format("INPUT P%iGUID", player + 1), "");
+	}
+	computeLastKnownPlayersDeviceIndexes();
+}
