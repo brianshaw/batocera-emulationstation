@@ -13,7 +13,7 @@
 #include "SystemConf.h"
 
 #define gettext_controllers_settings				_("CONTROLLER SETTINGS")
-#define gettext_controllers_and_bluetooth_settings  _("CONTROLLER & BLUETOOTH SETTINGS")
+#define gettext_controllers_and_bluetooth_settings  _("CONTROLLER ASSIGNMENT PER EMULATOR")
 
 #define gettext_controllers_priority _("CONTROLLERS PRIORITY")
 #define gettext_controllers_player_assigments _("PLAYER ASSIGNMENTS")
@@ -44,5 +44,5 @@ GuiControllersAssignmentsPerEmulator::GuiControllersAssignmentsPerEmulator(Windo
 {
 	Window* window = mWindow;
 
-	window->addGroup(_("TESTING"));
+	// addGroup(_("TESTING"));
 }
