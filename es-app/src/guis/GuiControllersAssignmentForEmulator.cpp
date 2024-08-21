@@ -201,7 +201,7 @@ GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window*
 			InputConfigInfo* selected = input->getSelected();
 			if (selected == nullptr)
 			{
-				changed |= Settings::getInstance()->setString(confName, "");
+				changed |= Settings::getInstance()->setString(confName, "DEFAULT");
 				changed |= Settings::getInstance()->setString(confGuid, "");
 				changed |= Settings::getInstance()->setString(confPath, "");
 			}

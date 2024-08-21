@@ -18,6 +18,7 @@
 #include "Paths.h"
 #include "GunManager.h"
 #include "renderers/Renderer.h"
+#include "SystemConf.h"
 
 #ifdef HAVE_UDEV
 #include <libudev.h>
@@ -1343,8 +1344,9 @@ void InputManager::loadControllerDefaultsForSystem(std::string systemName)
 	}
 	// bool changed = false;
 	// if (changed)
-	Settings::getInstance()->saveFile();
 	computeLastKnownPlayersDeviceIndexes();
+	Settings::getInstance()->saveFile();
+	SystemConf::getInstance()->saveSystemConf();
 }
 
 void InputManager::resetControllerDefaults()
@@ -1356,6 +1358,7 @@ void InputManager::resetControllerDefaults()
 		Settings::getInstance()->setString(Utils::String::format("INPUT P%iGUID", player + 1), "");
 		Settings::getInstance()->setString(Utils::String::format("INPUT P%iPATH", player + 1), "");
 	}
-	Settings::getInstance()->saveFile();
 	computeLastKnownPlayersDeviceIndexes();
+	Settings::getInstance()->saveFile();
+	SystemConf::getInstance()->saveSystemConf();
 }
