@@ -1,4 +1,4 @@
-#include "GuiControllersAssignmentsPerEmulator.h"
+#include "GuiControllersAssignmentForEmulator.h"
 
 #include "components/SwitchComponent.h"
 #include "components/OptionListComponent.h"
@@ -11,7 +11,6 @@
 #include "guis/GuiMsgBox.h"
 #include "InputManager.h"
 #include "SystemConf.h"
-#include "SystemData.h"
 
 #define gettext_controllers_settings				_("CONTROLLER SETTINGS")
 #define gettext_controllers_and_bluetooth_settings  _("CONTROLLER ASSIGNMENT PER EMULATOR")
@@ -31,37 +30,33 @@
 #define controllers_group_label		gettext_controllers_player_assigments
 #endif
 
-std::string GuiControllersAssignmentsPerEmulator::getControllersSettingsLabel()
+std::string GuiControllersAssignmentForEmulator::getControllersSettingsLabel()
 {
 	return controllers_settings_label;
 }
 
-void GuiControllersAssignmentsPerEmulator::openControllersSettings(Window* wnd, int autoSel)
+void GuiControllersAssignmentForEmulator::openControllersSettings(Window* wnd, const char* systemName)
 {
-	wnd->pushGui(new GuiControllersAssignmentsPerEmulator(wnd, autoSel));
+	wnd->pushGui(new GuiControllersAssignmentForEmulator(wnd, systemName));
 }
 
-GuiControllersAssignmentsPerEmulator::GuiControllersAssignmentsPerEmulator(Window* wnd, int autoSel) : GuiSettings(wnd, controllers_settings_label.c_str())
+GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window* wnd, const char* systemName) : GuiSettings(wnd, controllers_settings_label.c_str())
 {
 	Window* window = mWindow;
 
-	addGroup(_("TESTING"));
+	addGroup(systemName);
 
-	for (auto system : SystemData::sSystemVector)
-	{
-		if (system->isVisible())
-		{
-			// system->getName();
-			if (system->getName() != "all")
-			{
-				addEntry(system->getName(), true, [window, system->getName()] { GuiControllersAssignmentForEmulator::openControllersSettings(window); });
-				// addEntry(GuiControllersAssignmentsPerEmulator::getControllersSettingsLabel(), true, [window] { GuiControllersAssignmentsPerEmulator::openControllersSettings(window); }, "iconControllers");
-			}
-		}
-	}
 }
 
-void GuiControllersAssignmentsPerEmulator::test_func()
+void GuiControllersAssignmentForEmulator::test_func()
 {
 	LOG(LogError) << "test_func()";
 }
+// mStringMap["INPUT P1NAME"] = "DEFAULT";
+// 	mStringMap["INPUT P2NAME"] = "DEFAULT";
+// 	mStringMap["INPUT P3NAME"] = "DEFAULT";
+// 	mStringMap["INPUT P4NAME"] = "DEFAULT";
+// 	mStringMap["INPUT P5NAME"] = "DEFAULT";
+// 	mStringMap["INPUT P6NAME"] = "DEFAULT";
+// 	mStringMap["INPUT P7NAME"] = "DEFAULT";
+// 	mStringMap["INPUT P8NAME"] = "DEFAULT";

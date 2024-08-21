@@ -186,21 +186,9 @@ GuiControllersSettings::GuiControllersSettings(Window* wnd, int autoSel) : GuiSe
 		addSwitch(_("SHOW CONTROLLER BATTERY LEVEL"), "ShowControllerBattery", true);
 	
 	addGroup(controllers_group_label);
+	
 	addEntry(GuiControllersAssignmentsPerEmulator::getControllersSettingsLabel(), true, [window] { GuiControllersAssignmentsPerEmulator::openControllersSettings(window); }, "iconControllers");
-	// addEntry(_("CONTROLLER ASSIGNMENT PER EMULATOR"), false, [window, this, autoSel]
-	// {
-	// 	GuiControllersAssignmentsPerEmulator::openControllersSettings(window);
-	// 	// window->pushGui(new GuiControllersAssignmentsPerEmulator(window, autoSel));
-	// 	// window->pushGui(new GuiMsgBox(window,
-	// 	// 	_("YOU ARE GOING TO MAP A CONTROLLER. MAP BASED ON THE BUTTON'S POSITION, "
-	// 	// 		"NOT ITS PHYSICAL LABEL. IF YOU DO NOT HAVE A SPECIAL BUTTON FOR HOTKEY, "
-	// 	// 		"USE THE SELECT BUTTON. SKIP ALL BUTTONS/STICKS YOU DO NOT HAVE BY "
-	// 	// 		"HOLDING ANY BUTTON. PRESS THE SOUTH BUTTON TO CONFIRM WHEN DONE."),
-	// 	// 	_("OK"), [window, this] { window->pushGui(new GuiDetectDevice(window, false, [window, this] { Window* parent = window; setSave(false); delete this; openControllersSettings(parent); })); },
-	// 	// 	_("CANCEL"), nullptr,
-	// 	// 	GuiMsgBoxIcon::ICON_INFORMATION));
-	// });
-
+	
 	// Here we go; for each player
 	std::list<int> alreadyTaken = std::list<int>();
 
