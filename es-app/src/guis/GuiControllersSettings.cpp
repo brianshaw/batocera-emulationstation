@@ -11,6 +11,7 @@
 #include "guis/GuiMsgBox.h"
 #include "InputManager.h"
 #include "SystemConf.h"
+#include <SDL.h>
 
 #define gettext_controllers_settings				_("CONTROLLER SETTINGS")
 #define gettext_controllers_and_bluetooth_settings  _("CONTROLLER & BLUETOOTH SETTINGS")
@@ -43,6 +44,31 @@ void GuiControllersSettings::openControllersSettings(Window* wnd, int autoSel)
 GuiControllersSettings::GuiControllersSettings(Window* wnd, int autoSel) : GuiSettings(wnd, controllers_settings_label.c_str())
 {
 	Window* window = mWindow;
+
+	
+	int numJoysticks = SDL_NumJoysticks();
+	LOG(LogError) << "numJoysticks: " << numJoysticks;
+	for (int idx = 0; idx < numJoysticks; idx++)
+	{
+		// open joystick & add to our list
+		SDL_Joystick* joy = SDL_JoystickOpen(idx);
+		if (joy == nullptr)
+			continue;
+
+		// add it to our list so we can close it again later
+		SDL_JoystickID joyId = SDL_JoystickInstanceID(joy);
+		LOG(LogError) << "joyId: " << joyId;
+		LOG(LogError) << "name: " << SDL_JoystickName(joy);
+		char guid[40];
+		SDL_JoystickGetGUIDString(SDL_JoystickGetGUID(joy), guid, 40);
+		LOG(LogError) << "path_st: " << Utils::String::padLeft(std::to_string(idx), 4, '0');
+		LOG(LogError) << "guid: " << std::string(guid);
+		// std::string devicePath = Utils::String::padLeft(std::to_string(idx), 4, '0') + "@" + std::string(guid);
+		std::string devicePath = SDL_JoystickPathForIndex(idx);
+		LOG(LogError) << "devicePath: " << devicePath;
+	}
+
+
 
 	addGroup(_("SETTINGS"));
 
