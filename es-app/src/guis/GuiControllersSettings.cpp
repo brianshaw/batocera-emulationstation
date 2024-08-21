@@ -60,7 +60,9 @@ GuiControllersSettings::GuiControllersSettings(Window* wnd, int autoSel) : GuiSe
 		SDL_JoystickGetGUIDString(SDL_JoystickGetGUID(joy), guid, 40);
 		LOG(LogError) << "path_st: " << Utils::String::padLeft(std::to_string(idx), 4, '0');
 		LOG(LogError) << "guid: " << std::string(guid);
-		std::string devicePath = Utils::String::padLeft(std::to_string(idx), 4, '0') + "@" + std::string(guid);
+		// std::string devicePath = Utils::String::padLeft(std::to_string(idx), 4, '0') + "@" + std::string(guid);
+		std::string devicePath = SDL_JoystickPathForIndex(idx);
+		LOG(LogError) << "devicePath: " << devicePath;
 	}
 
 
