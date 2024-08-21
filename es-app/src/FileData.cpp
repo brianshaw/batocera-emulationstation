@@ -15,6 +15,7 @@
 #include "VolumeControl.h"
 #include "Window.h"
 #include "views/UIModeController.h"
+#include "views/ViewController.h"
 #include <assert.h>
 #include "SystemConf.h"
 #include "InputManager.h"
