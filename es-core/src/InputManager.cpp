@@ -1312,7 +1312,7 @@ void InputManager::sendMouseClick(Window* window, int button)
 	window->input(getInputConfigByDevice(DEVICE_MOUSE), Input(DEVICE_MOUSE, TYPE_BUTTON, button, false, false));
 }
 
-void InputManager::loadControllerDefaultsForSystem(std::String systemName)
+void InputManager::loadControllerDefaultsForSystem(std::string systemName)
 {
 	for (int player = 0; player < MAX_PLAYERS; player++) 
 	{

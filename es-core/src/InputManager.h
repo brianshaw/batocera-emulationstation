@@ -71,8 +71,8 @@ public:
 	void sendMouseClick(Window* window, int button);
 	InputConfig* getInputConfigByDevice(int deviceId);
 
-	void InputManager::loadControllerDefaultsForSystem(std::String systemName)
-	void InputManager::resetControllerDefaults()
+	void InputManager::loadControllerDefaultsForSystem(std::string systemName);
+	void InputManager::resetControllerDefaults();
 
 private:
 	InputManager();
