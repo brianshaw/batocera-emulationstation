@@ -1336,10 +1336,11 @@ void InputManager::loadControllerDefaultsForSystem(std::string systemName)
 
 void InputManager::resetControllerDefaults()
 {
-	for (int player = 0; player < MAX_PLAYERS; player++) 
-	{
-		Settings::getInstance()->setString(Utils::String::format("INPUT P%iNAME", player + 1), "");
-		Settings::getInstance()->setString(Utils::String::format("INPUT P%iGUID", player + 1), "");
-	}
-	computeLastKnownPlayersDeviceIndexes();
+	LOG(LogError) << "resetControllerDefaults";
+	// for (int player = 0; player < MAX_PLAYERS; player++) 
+	// {
+	// 	Settings::getInstance()->setString(Utils::String::format("INPUT P%iNAME", player + 1), "");
+	// 	Settings::getInstance()->setString(Utils::String::format("INPUT P%iGUID", player + 1), "");
+	// }
+	// computeLastKnownPlayersDeviceIndexes();
 }
