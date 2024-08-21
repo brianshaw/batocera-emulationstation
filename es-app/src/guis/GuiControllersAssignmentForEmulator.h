@@ -27,7 +27,7 @@ public:
 	static void openControllersSettings(Window* wnd, std::string systemName);
 	
 	GuiControllersAssignmentForEmulator(Window* wnd, std::string systemName);
-	// ~GuiControllersAssignmentForEmulator();
+	~GuiControllersAssignmentForEmulator();
 
 private:
   void test_func();
@@ -36,5 +36,5 @@ private:
 // 	void openControllersSpecificSettings_steamdeckgun();
 
 // 	// std::vector<InputConfigInfo*> mLoadedInput;
-// 	void clearLoadedInput();
+	void clearLoadedInput();
 };

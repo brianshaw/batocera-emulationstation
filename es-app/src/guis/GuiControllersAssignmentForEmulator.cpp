@@ -11,6 +11,7 @@
 #include "guis/GuiMsgBox.h"
 #include "InputManager.h"
 #include "SystemConf.h"
+#include "GuiControllersSettings.h"
 
 #define gettext_controllers_settings				_("CONTROLLER SETTINGS")
 #define gettext_controllers_and_bluetooth_settings  _("CONTROLLER ASSIGNMENT PER EMULATOR")
@@ -131,6 +132,19 @@ GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window*
 		// Populate controllers list
 		addWithLabel(label, inputOptionList);
 
+}
+
+void GuiControllersAssignmentForEmulator::clearLoadedInput() 
+{
+	for (int i = 0; i < mLoadedInput.size(); i++) 
+		delete mLoadedInput[i];
+
+	mLoadedInput.clear();
+}
+
+GuiControllersAssignmentForEmulator::~GuiControllersAssignmentForEmulator() 
+{
+	clearLoadedInput();
 }
 
 void GuiControllersAssignmentForEmulator::test_func()
