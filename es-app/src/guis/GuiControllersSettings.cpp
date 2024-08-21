@@ -188,7 +188,8 @@ GuiControllersSettings::GuiControllersSettings(Window* wnd, int autoSel) : GuiSe
 	addGroup(controllers_group_label);
 	addEntry(_("CONTROLLER ASSIGNMENT PER EMULATOR"), false, [window, this, autoSel]
 	{
-		window->pushGui(new GuiControllersAssignmentsPerEmulator(window, autoSel));
+		GuiControllersAssignmentsPerEmulator::openControllersSettings(window);
+		// window->pushGui(new GuiControllersAssignmentsPerEmulator(window, autoSel));
 		// window->pushGui(new GuiMsgBox(window,
 		// 	_("YOU ARE GOING TO MAP A CONTROLLER. MAP BASED ON THE BUTTON'S POSITION, "
 		// 		"NOT ITS PHYSICAL LABEL. IF YOU DO NOT HAVE A SPECIAL BUTTON FOR HOTKEY, "
