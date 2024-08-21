@@ -686,6 +686,7 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	const std::string basename = Utils::FileSystem::getStem(getPath());
 
 	InputManager::getInstance()->loadControllerDefaultsForSystem(system->getName());
+	ViewController::get()->reloadAll();
 	Scripting::fireEvent("game-start", rom, basename, getName());
 
 	time_t tstart = time(NULL);
@@ -717,6 +718,7 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 		Utils::FileSystem::removeFile(p2kConv);
 
 	InputManager::getInstance()->resetControllerDefaults();
+	ViewController::get()->reloadAll();
 	Scripting::fireEvent("game-end");
 	
 	if (!hideWindow && Settings::getInstance()->getBool("HideWindowFullReinit"))
