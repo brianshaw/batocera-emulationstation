@@ -192,7 +192,7 @@ GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window*
 
 		for (int player = 0; player < MAX_PLAYERS; player++)
 		{
-			std::string confName = Utils::String::format("%s INPUT P%iNAME", systemName.c_str().c_str(), player + 1);
+			std::string confName = Utils::String::format("%s INPUT P%iNAME", systemName.c_str(), player + 1);
 			std::string confGuid = Utils::String::format("%s INPUT P%iGUID", systemName.c_str(), player + 1);
 			std::string confPath = Utils::String::format("%s INPUT P%iPATH", systemName.c_str(), player + 1);
 
