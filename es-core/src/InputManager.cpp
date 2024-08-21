@@ -1322,6 +1322,7 @@ void InputManager::loadControllerDefaultsForSystem(std::string systemName)
 
 		std::string systemPlayerConfigName = Settings::getInstance()->getString(Utils::String::format("%s INPUT P%iNAME", systemName.c_str(), player + 1));
 		std::string systemPlayerConfigGuid = Settings::getInstance()->getString(Utils::String::format("%s INPUT P%iGUID", systemName.c_str(), player + 1));
+		std::string systemPlayerConfigPath = Settings::getInstance()->getString(Utils::String::format("%s INPUT P%iPATH", systemName.c_str(), player + 1));
 			LOG(LogError) << "Controller defaults for system " << systemName << " player " << (player + 1) << " : " << systemPlayerConfigName << " / " << systemPlayerConfigGuid;
 		if (!systemPlayerConfigName.empty()) {
 			LOG(LogError) << "Controller defaults for system " << systemName << " player " << (player + 1) << " found.";
@@ -1329,6 +1330,7 @@ void InputManager::loadControllerDefaultsForSystem(std::string systemName)
 			// std::string playerConfigGuid = Settings::getInstance()->getString(Utils::String::format("INPUT P%iGUID", player + 1));
 			Settings::getInstance()->setString(Utils::String::format("INPUT P%iNAME", player + 1), systemPlayerConfigName);
 			Settings::getInstance()->setString(Utils::String::format("INPUT P%iGUID", player + 1), systemPlayerConfigGuid);
+			Settings::getInstance()->setString(Utils::String::format("INPUT P%iPATH", player + 1), systemPlayerConfigPath);
 					// changed |= Settings::getInstance()->setString(confName, selected->name);
 					// changed |= Settings::getInstance()->setString(confGuid, selected->guid);
 					// changed |= Settings::getInstance()->setString(confPath, selected->path);
@@ -1336,6 +1338,7 @@ void InputManager::loadControllerDefaultsForSystem(std::string systemName)
 			LOG(LogError) << "No controller defaults for system " << systemName << " player " << (player + 1);
 			Settings::getInstance()->setString(Utils::String::format("INPUT P%iNAME", player + 1), "DEFAULT");
 			Settings::getInstance()->setString(Utils::String::format("INPUT P%iGUID", player + 1), "");
+			Settings::getInstance()->setString(Utils::String::format("INPUT P%iPATH", player + 1), "");
 		}
 	}
 	// bool changed = false;
