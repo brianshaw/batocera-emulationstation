@@ -254,6 +254,8 @@ void GuiMenu::addVersionInfo()
 			label = aboutInfo + buildDate;
 		}		
 	}
+
+	label = label + " - BS";
 		
 	if (!label.empty())
 	{
