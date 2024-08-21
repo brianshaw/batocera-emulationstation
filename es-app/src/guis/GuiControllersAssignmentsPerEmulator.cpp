@@ -1,4 +1,4 @@
-#include "guis/GuiControllersAssignmentsPerEmulator.h"
+#include "GuiControllersAssignmentsPerEmulator.h"
 
 #include "components/SwitchComponent.h"
 #include "components/OptionListComponent.h"
