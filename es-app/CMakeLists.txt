@@ -171,6 +171,7 @@ set(ES_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/guis/GuiBatoceraStore.cpp # batocera	
 	${CMAKE_CURRENT_SOURCE_DIR}/src/guis/GuiBios.cpp # batocera	
 	${CMAKE_CURRENT_SOURCE_DIR}/src/guis/GuiControllersSettings.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/guis/GuiControllersAssignmentsPerEmulator.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/guis/GuiKeyMappingEditor.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/guis/GuiKeyboardLayout.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/guis/GuiGameAchievements.cpp
