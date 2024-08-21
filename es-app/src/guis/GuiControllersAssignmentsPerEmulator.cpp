@@ -55,7 +55,7 @@ GuiControllersAssignmentsPerEmulator::GuiControllersAssignmentsPerEmulator(Windo
 			// system->getName();
 			if (system->getName() != "all")
 			{
-				systemName = system->getName()
+				systemName = system->getName();
 				addEntry(systemName, true, [window, systemName] { GuiControllersAssignmentForEmulator::openControllersSettings(window); });
 				// addEntry(GuiControllersAssignmentsPerEmulator::getControllersSettingsLabel(), true, [window] { GuiControllersAssignmentsPerEmulator::openControllersSettings(window); }, "iconControllers");
 			}
