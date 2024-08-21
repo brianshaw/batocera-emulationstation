@@ -694,8 +694,8 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 
 	// InputManager::getInstance()->getInputConfigs();
 	// InputManager::getInstance()->computePlayersConfigs();
-	// InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
-	InputManager::getInstance()->rebuildAllJoysticks();
+	InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
+	// InputManager::getInstance()->rebuildAllJoysticks();
 	for (int player = 0; player < MAX_PLAYERS; player++)
 	{
 		std::string configuratedName = Settings::getInstance()->getString(Utils::String::format("INPUT P%iNAME", player + 1));
@@ -746,8 +746,8 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	// InputManager::getInstance()->configureEmulators();
 	// InputManager::getInstance()->getInputConfigs();
 	// InputManager::getInstance()->computePlayersConfigs();
-	// InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
-	InputManager::getInstance()->rebuildAllJoysticks();
+	InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
+	// InputManager::getInstance()->rebuildAllJoysticks();
 	// std::string configuratedName = Settings::getInstance()->getString("INPUT P1GUID");
 	// LOG(LogError) << "TEST input configuratedName " << configuratedName;
 	// todo put this in an if settings is set to do this
