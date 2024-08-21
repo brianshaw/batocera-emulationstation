@@ -46,6 +46,20 @@ GuiControllersSettings::GuiControllersSettings(Window* wnd, int autoSel) : GuiSe
 	Window* window = mWindow;
 	int numJoysticks = SDL_NumJoysticks();
 	LOG(LogError) << "numJoysticks: " << numJoysticks;
+	for (int idx = 0; idx < numJoysticks; idx++)
+	{
+		// open joystick & add to our list
+		SDL_Joystick* joy = SDL_JoystickOpen(idx);
+		if (joy == nullptr)
+			continue;
+
+		// add it to our list so we can close it again later
+		SDL_JoystickID joyId = SDL_JoystickInstanceID(joy);
+		LOG(LogError) << "joyId: " << joyId;
+	}
+
+
+
 	addGroup(_("SETTINGS"));
 
 	// CONTROLLER CONFIGURATION
