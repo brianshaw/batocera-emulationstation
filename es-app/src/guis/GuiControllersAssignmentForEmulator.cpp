@@ -186,7 +186,7 @@ GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window*
 	}
 #endif
 
-	addSaveFunc([this, options, window]
+	addSaveFunc([this, options, window, systemName]
 	{
 		bool changed = false;
 
