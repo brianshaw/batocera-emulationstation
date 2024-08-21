@@ -47,7 +47,7 @@ GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window*
 
 	addGroup(systemName);
 
-  // Here we go; for each player
+	// Here we go; for each player
 	std::list<int> alreadyTaken = std::list<int>();
 
 	// clear the current loaded inputs
@@ -131,6 +131,96 @@ GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window*
 
 		// Populate controllers list
 		addWithLabel(label, inputOptionList);
+	}
+#else
+	for (int player = 0; player < MAX_PLAYERS; player++)
+	{
+		std::string confName = Utils::String::format("INPUT P%iNAME", player + 1);
+		std::string confGuid = Utils::String::format("INPUT P%iGUID", player + 1);
+		std::string confPath = Utils::String::format("INPUT P%iPATH", player + 1);
+
+		std::string label = Utils::String::format(gettext_playerid.c_str(), player + 1);
+
+		auto inputOptionList = std::make_shared<OptionListComponent<InputConfigInfo*> >(mWindow, label, false);
+		inputOptionList->add(_("default"), nullptr, false);
+		options.push_back(inputOptionList);
+
+		// Checking if a setting has been saved, else setting to default
+		std::string configuratedName = Settings::getInstance()->getString(confName);
+		std::string configuratedGuid = Settings::getInstance()->getString(confGuid);
+		std::string configuratedPath = Settings::getInstance()->getString(confPath);
+
+		bool found = false;
+
+		// For each available and configured input
+		for (auto config : configList)
+		{
+			std::string displayName = "#" + std::to_string(config->getDeviceIndex()) + " " + config->getDeviceName();
+			bool foundFromConfig = !configuratedPath.empty() ? config->getSortDevicePath() == configuratedPath : configuratedName == config->getDeviceName() && configuratedGuid == config->getDeviceGUIDString();
+
+			int deviceID = config->getDeviceId();
+
+			InputConfigInfo* newInputConfig = new InputConfigInfo(config->getDeviceName(), config->getDeviceGUIDString(), config->getSortDevicePath());
+			mLoadedInput.push_back(newInputConfig);
+
+			if (foundFromConfig && std::find(alreadyTaken.begin(), alreadyTaken.end(), deviceID) == alreadyTaken.end() && !found)
+			{
+				found = true;
+				alreadyTaken.push_back(deviceID);
+
+				LOG(LogWarning) << "adding entry for player" << player << " (selected): " << config->getDeviceName() << "  " << config->getDeviceGUIDString() << "  " << config->getDevicePath();
+				inputOptionList->add(displayName, newInputConfig, true);
+			}
+			else
+			{
+				LOG(LogInfo) << "adding entry for player" << player << " (not selected): " << config->getDeviceName() << "  " << config->getDeviceGUIDString() << "  " << config->getDevicePath();
+				inputOptionList->add(displayName, newInputConfig, false);
+			}
+		}
+
+		if (!inputOptionList->hasSelection())
+			inputOptionList->selectFirstItem();
+
+		// Populate controllers list
+		addWithLabel(label, inputOptionList);
+	}
+#endif
+
+	addSaveFunc([this, options, window]
+	{
+		bool changed = false;
+
+		for (int player = 0; player < MAX_PLAYERS; player++)
+		{
+			std::string confName = Utils::String::format("INPUT P%iNAME", player + 1);
+			std::string confGuid = Utils::String::format("INPUT P%iGUID", player + 1);
+			std::string confPath = Utils::String::format("INPUT P%iPATH", player + 1);
+
+			auto input = options.at(player);
+
+			InputConfigInfo* selected = input->getSelected();
+			if (selected == nullptr)
+			{
+				changed |= Settings::getInstance()->setString(confName, "DEFAULT");
+				changed |= Settings::getInstance()->setString(confGuid, "");
+				changed |= Settings::getInstance()->setString(confPath, "");
+			}
+			else if (input->changed())
+			{
+				LOG(LogInfo) << "Found the selected controller : " << input->getSelectedName() << ", " << selected->guid << ", " << selected->path;
+
+				changed |= Settings::getInstance()->setString(confName, selected->name);
+				changed |= Settings::getInstance()->setString(confGuid, selected->guid);
+				changed |= Settings::getInstance()->setString(confPath, selected->path);
+			}
+		}
+
+		if (changed)
+			Settings::getInstance()->saveFile();
+
+		// this is dependant of this configuration, thus update it
+		InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
+	});
 
 }
 
