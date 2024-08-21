@@ -1320,7 +1320,7 @@ void InputManager::loadControllerDefaultsForSystem(std::string systemName)
 		// 	continue;
 
 		std::string systemPlayerConfigName = Settings::getInstance()->getString(Utils::String::format("%s INPUT P%iNAME", systemName, player + 1));
-		std::string systemPlayerConfigGuid = Settings::getInstance()->getString(Utils::String::format("%s INPUT P%iGUID", systemName,, player + 1));
+		std::string systemPlayerConfigGuid = Settings::getInstance()->getString(Utils::String::format("%s INPUT P%iGUID", systemName, player + 1));
 
 		// std::string playerConfigName = Settings::getInstance()->getString(Utils::String::format("INPUT P%iNAME", player + 1));
 		// std::string playerConfigGuid = Settings::getInstance()->getString(Utils::String::format("INPUT P%iGUID", player + 1));
