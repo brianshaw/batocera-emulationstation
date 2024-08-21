@@ -2,6 +2,7 @@
 
 #include "GuiSettings.h"
 #include <vector>
+#include "GuiControllersSettings.h"
 
 class Window;
 
@@ -35,6 +36,6 @@ private:
 // 	void openControllersSpecificSettings_wiigun();
 // 	void openControllersSpecificSettings_steamdeckgun();
 
-// 	// std::vector<InputConfigInfo*> mLoadedInput;
+	std::vector<InputConfigInfo*> mLoadedInput;
 	void clearLoadedInput();
 };
