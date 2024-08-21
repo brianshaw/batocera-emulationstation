@@ -27,7 +27,7 @@ public:
 	static void openControllersSettings(Window* wnd, int autoSel = 0);
 	
 	GuiControllersAssignmentsPerEmulator(Window* wnd, int autosel = 0);
-	~GuiControllersAssignmentsPerEmulator();
+	// ~GuiControllersAssignmentsPerEmulator();
 
 // private:
 // 	void openControllersSpecificSettings_sindengun();

@@ -44,5 +44,5 @@ GuiControllersAssignmentsPerEmulator::GuiControllersAssignmentsPerEmulator(Windo
 {
 	Window* window = mWindow;
 
-	// addGroup(_("TESTING"));
+	addGroup(_("TESTING"));
 }
