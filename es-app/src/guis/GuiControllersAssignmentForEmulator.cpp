@@ -67,9 +67,9 @@ GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window*
 		options.push_back(inputOptionList);
 
 		// Checking if a setting has been saved, else setting to default
-		std::string configuratedName = Settings::getInstance()->getString(Utils::String::format("{} INPUT P%iNAME",systemName, player + 1));
-		std::string configuratedGuid = Settings::getInstance()->getString(Utils::String::format("{} INPUT P%iGUID",systemName, player + 1));
-		std::string configuratedPath = Settings::getInstance()->getString(Utils::String::format("{} INPUT P%iPATH",systemName, player + 1));
+		std::string configuratedName = Settings::getInstance()->getString(Utils::String::format("%s INPUT P%iNAME",systemName, player + 1));
+		std::string configuratedGuid = Settings::getInstance()->getString(Utils::String::format("%s INPUT P%iGUID",systemName, player + 1));
+		std::string configuratedPath = Settings::getInstance()->getString(Utils::String::format("%s INPUT P%iPATH",systemName, player + 1));
 
 		bool found = false;
 
@@ -135,9 +135,9 @@ GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window*
 #else
 	for (int player = 0; player < MAX_PLAYERS; player++)
 	{
-		std::string confName = Utils::String::format("{} INPUT P%iNAME", systemName, player + 1);
-		std::string confGuid = Utils::String::format("{} INPUT P%iGUID", systemName, player + 1);
-		std::string confPath = Utils::String::format("{} INPUT P%iPATH", systemName, player + 1);
+		std::string confName = Utils::String::format("%s INPUT P%iNAME", systemName, player + 1);
+		std::string confGuid = Utils::String::format("%s INPUT P%iGUID", systemName, player + 1);
+		std::string confPath = Utils::String::format("%s INPUT P%iPATH", systemName, player + 1);
 
 		std::string label = Utils::String::format(gettext_playerid.c_str(), player + 1);
 
@@ -192,9 +192,9 @@ GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window*
 
 		for (int player = 0; player < MAX_PLAYERS; player++)
 		{
-			std::string confName = Utils::String::format("{} INPUT P%iNAME", systemName, player + 1);
-			std::string confGuid = Utils::String::format("{} INPUT P%iGUID", systemName, player + 1);
-			std::string confPath = Utils::String::format("{} INPUT P%iPATH", systemName, player + 1);
+			std::string confName = Utils::String::format("%s INPUT P%iNAME", systemName, player + 1);
+			std::string confGuid = Utils::String::format("%s INPUT P%iGUID", systemName, player + 1);
+			std::string confPath = Utils::String::format("%s INPUT P%iPATH", systemName, player + 1);
 
 			auto input = options.at(player);
 
