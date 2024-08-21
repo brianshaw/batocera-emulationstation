@@ -11,6 +11,7 @@
 #include "guis/GuiMsgBox.h"
 #include "InputManager.h"
 #include "SystemConf.h"
+#include "SystemData.h"
 
 #define gettext_controllers_settings				_("CONTROLLER SETTINGS")
 #define gettext_controllers_and_bluetooth_settings  _("CONTROLLER ASSIGNMENT PER EMULATOR")
@@ -45,4 +46,18 @@ GuiControllersAssignmentsPerEmulator::GuiControllersAssignmentsPerEmulator(Windo
 	Window* window = mWindow;
 
 	addGroup(_("TESTING"));
+
+	for (auto system : SystemData::sSystemVector)
+	{
+		if (system->isVisible())
+		{
+			// system->getName();
+			addEntry(system->getName(), true, [this] { test_func(); });
+		}
+	}
+}
+
+void GuiControllersAssignmentsPerEmulator::test_func()
+{
+	LOG(LogError) << "test_func()";
 }
