@@ -71,6 +71,8 @@ public:
 	void sendMouseClick(Window* window, int button);
 	InputConfig* getInputConfigByDevice(int deviceId);
 
+	void rebuildAllJoysticks(bool deinit = true);
+	
 private:
 	InputManager();
 
@@ -103,7 +105,6 @@ private:
 	bool tryLoadInputConfig(std::string path, InputConfig* config, bool allowApproximate = true);
 
 	void clearJoysticks();
-	void rebuildAllJoysticks(bool deinit = true);
 };
 
 #endif // ES_CORE_INPUT_MANAGER_H
