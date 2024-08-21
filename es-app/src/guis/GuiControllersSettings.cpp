@@ -11,6 +11,7 @@
 #include "guis/GuiMsgBox.h"
 #include "InputManager.h"
 #include "SystemConf.h"
+#include "GuiControllersAssignmentsPerEmulator.h"
 
 #define gettext_controllers_settings				_("CONTROLLER SETTINGS")
 #define gettext_controllers_and_bluetooth_settings  _("CONTROLLER & BLUETOOTH SETTINGS")
@@ -183,8 +184,20 @@ GuiControllersSettings::GuiControllersSettings(Window* wnd, int autoSel) : GuiSe
 
 	if (Settings::getInstance()->getBool("ShowControllerActivity"))
 		addSwitch(_("SHOW CONTROLLER BATTERY LEVEL"), "ShowControllerBattery", true);
-
+	
 	addGroup(controllers_group_label);
+	addEntry(_("CONTROLLER ASSIGNMENT PER EMULATOR"), false, [window, this]
+	{
+		wnd->pushGui(new GuiControllersAssignmentsPerEmulator(wnd, autoSel));
+		// window->pushGui(new GuiMsgBox(window,
+		// 	_("YOU ARE GOING TO MAP A CONTROLLER. MAP BASED ON THE BUTTON'S POSITION, "
+		// 		"NOT ITS PHYSICAL LABEL. IF YOU DO NOT HAVE A SPECIAL BUTTON FOR HOTKEY, "
+		// 		"USE THE SELECT BUTTON. SKIP ALL BUTTONS/STICKS YOU DO NOT HAVE BY "
+		// 		"HOLDING ANY BUTTON. PRESS THE SOUTH BUTTON TO CONFIRM WHEN DONE."),
+		// 	_("OK"), [window, this] { window->pushGui(new GuiDetectDevice(window, false, [window, this] { Window* parent = window; setSave(false); delete this; openControllersSettings(parent); })); },
+		// 	_("CANCEL"), nullptr,
+		// 	GuiMsgBoxIcon::ICON_INFORMATION));
+	});
 
 	// Here we go; for each player
 	std::list<int> alreadyTaken = std::list<int>();
