@@ -1322,8 +1322,9 @@ void InputManager::loadControllerDefaultsForSystem(std::string systemName)
 
 		std::string systemPlayerConfigName = Settings::getInstance()->getString(Utils::String::format("%s INPUT P%iNAME", systemName, player + 1));
 		std::string systemPlayerConfigGuid = Settings::getInstance()->getString(Utils::String::format("%s INPUT P%iGUID", systemName, player + 1));
+			LOG(LogError) << "Controller defaults for system " << systemName << " player " << (player + 1) << " : " << systemPlayerConfigName << " / " << systemPlayerConfigGuid;
 		if (!systemPlayerConfigName.empty()) {
-			LOG(LogError) << "Controller defaults for system " << systemName << " player " << player << " : " << systemPlayerConfigName << " / " << systemPlayerConfigGuid;
+			LOG(LogError) << "Controller defaults for system " << systemName << " player " << (player + 1) << " found.";
 			// std::string playerConfigName = Settings::getInstance()->getString(Utils::String::format("INPUT P%iNAME", player + 1));
 			// std::string playerConfigGuid = Settings::getInstance()->getString(Utils::String::format("INPUT P%iGUID", player + 1));
 			Settings::getInstance()->setString(Utils::String::format("INPUT P%iNAME", player + 1), systemPlayerConfigName);
@@ -1332,7 +1333,7 @@ void InputManager::loadControllerDefaultsForSystem(std::string systemName)
 					// changed |= Settings::getInstance()->setString(confGuid, selected->guid);
 					// changed |= Settings::getInstance()->setString(confPath, selected->path);
 		} else {
-			LOG(LogError) << "No controller defaults for system " << systemName << " player " << player;
+			LOG(LogError) << "No controller defaults for system " << systemName << " player " << (player + 1);
 			Settings::getInstance()->setString(Utils::String::format("INPUT P%iNAME", player + 1), "");
 			Settings::getInstance()->setString(Utils::String::format("INPUT P%iGUID", player + 1), "");
 		}
