@@ -29,11 +29,11 @@ public:
 	GuiControllersAssignmentsPerEmulator(Window* wnd, int autosel = 0);
 	~GuiControllersAssignmentsPerEmulator();
 
-private:
-	void openControllersSpecificSettings_sindengun();
-	void openControllersSpecificSettings_wiigun();
-	void openControllersSpecificSettings_steamdeckgun();
+// private:
+// 	void openControllersSpecificSettings_sindengun();
+// 	void openControllersSpecificSettings_wiigun();
+// 	void openControllersSpecificSettings_steamdeckgun();
 
-	// std::vector<InputConfigInfo*> mLoadedInput;
-	void clearLoadedInput();
+// 	// std::vector<InputConfigInfo*> mLoadedInput;
+// 	void clearLoadedInput();
 };
