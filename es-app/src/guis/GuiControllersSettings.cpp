@@ -11,6 +11,7 @@
 #include "guis/GuiMsgBox.h"
 #include "InputManager.h"
 #include "SystemConf.h"
+#include <SDL.h>
 
 #define gettext_controllers_settings				_("CONTROLLER SETTINGS")
 #define gettext_controllers_and_bluetooth_settings  _("CONTROLLER & BLUETOOTH SETTINGS")
@@ -43,7 +44,8 @@ void GuiControllersSettings::openControllersSettings(Window* wnd, int autoSel)
 GuiControllersSettings::GuiControllersSettings(Window* wnd, int autoSel) : GuiSettings(wnd, controllers_settings_label.c_str())
 {
 	Window* window = mWindow;
-
+	int numJoysticks = SDL_NumJoysticks();
+	LOG(LogError) << "numJoysticks: " << numJoysticks;
 	addGroup(_("SETTINGS"));
 
 	// CONTROLLER CONFIGURATION
