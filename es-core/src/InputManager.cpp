@@ -1314,6 +1314,7 @@ void InputManager::sendMouseClick(Window* window, int button)
 
 void InputManager::loadControllerDefaultsForSystem(std::string systemName)
 {
+	LOG(LogError) << "Loading controller defaults for system " << systemName;
 	for (int player = 0; player < MAX_PLAYERS; player++) 
 	{
 		// if (playerJoysticks.find(player) != playerJoysticks.cend())
