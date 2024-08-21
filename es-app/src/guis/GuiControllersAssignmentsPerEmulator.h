@@ -5,20 +5,20 @@
 
 class Window;
 
-class InputConfigInfo
-{
-public:
-	InputConfigInfo(const std::string& ideviceName, const std::string& ideviceGUIDString, const std::string& idevicePath)
-	{
-		name = ideviceName;
-		guid = ideviceGUIDString;
-		path = idevicePath;
-	}
+// class InputConfigInfo
+// {
+// public:
+// 	InputConfigInfo(const std::string& ideviceName, const std::string& ideviceGUIDString, const std::string& idevicePath)
+// 	{
+// 		name = ideviceName;
+// 		guid = ideviceGUIDString;
+// 		path = idevicePath;
+// 	}
 
-	std::string name;
-	std::string guid;
-	std::string path;
-};
+// 	std::string name;
+// 	std::string guid;
+// 	std::string path;
+// };
 
 class GuiControllersAssignmentsPerEmulator : public GuiSettings
 {
