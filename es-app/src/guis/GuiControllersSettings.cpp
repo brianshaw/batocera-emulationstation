@@ -56,6 +56,7 @@ GuiControllersSettings::GuiControllersSettings(Window* wnd, int autoSel) : GuiSe
 		// add it to our list so we can close it again later
 		SDL_JoystickID joyId = SDL_JoystickInstanceID(joy);
 		LOG(LogError) << "joyId: " << joyId;
+		LOG(LogError) << "name: " << SDL_JoystickName(joy);
 		char guid[40];
 		SDL_JoystickGetGUIDString(SDL_JoystickGetGUID(joy), guid, 40);
 		LOG(LogError) << "path_st: " << Utils::String::padLeft(std::to_string(idx), 4, '0');
