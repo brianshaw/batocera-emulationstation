@@ -97,7 +97,7 @@ private:
 	std::map<int, InputConfig*> computePlayersConfigs();
 
 	bool initialized() const;
-	bool loadInputConfig(InputConfig* config); // returns true if successfully loaded, false if not (or didn't exist)
+	// bool loadInputConfig(InputConfig* config); // returns true if successfully loaded, false if not (or didn't exist)
 	bool loadFromSdlMapping(InputConfig* config, const std::string& mapping);
 
 	bool tryLoadInputConfig(std::string path, InputConfig* config, bool allowApproximate = true);
