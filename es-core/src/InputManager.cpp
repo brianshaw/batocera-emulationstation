@@ -403,7 +403,7 @@ void InputManager::rebuildAllJoysticks(bool deinit)
 #elif SDL_VERSION_ATLEAST(2, 24, 0)
 		devicePath = SDL_JoystickPathForIndex(idx);
 #endif
-
+		LOG(LogError) << "Joystick " << idx << " : " << SDL_JoystickName(joy) << " (GUID: " << guid << ", instance ID: " << joyId << ", device index: " << idx << ", device path : " << devicePath << ").";
 		mInputConfigs[joyId] = new InputConfig(joyId, idx, SDL_JoystickName(joy), guid, SDL_JoystickNumButtons(joy), SDL_JoystickNumHats(joy), SDL_JoystickNumAxes(joy), devicePath);
 
 		if (!loadInputConfig(mInputConfigs[joyId]))
