@@ -67,9 +67,9 @@ GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window*
 		options.push_back(inputOptionList);
 
 		// Checking if a setting has been saved, else setting to default
-		std::string configuratedName = Settings::getInstance()->getString(Utils::String::format("INPUT P%iNAME", player + 1));
-		std::string configuratedGuid = Settings::getInstance()->getString(Utils::String::format("INPUT P%iGUID", player + 1));
-		std::string configuratedPath = Settings::getInstance()->getString(Utils::String::format("INPUT P%iPATH", player + 1));
+		std::string configuratedName = Settings::getInstance()->getString(Utils::String::format("{} INPUT P%iNAME",systemName, player + 1));
+		std::string configuratedGuid = Settings::getInstance()->getString(Utils::String::format("{} INPUT P%iGUID",systemName, player + 1));
+		std::string configuratedPath = Settings::getInstance()->getString(Utils::String::format("{} INPUT P%iPATH",systemName, player + 1));
 
 		bool found = false;
 
@@ -135,9 +135,9 @@ GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window*
 #else
 	for (int player = 0; player < MAX_PLAYERS; player++)
 	{
-		std::string confName = Utils::String::format("INPUT P%iNAME", player + 1);
-		std::string confGuid = Utils::String::format("INPUT P%iGUID", player + 1);
-		std::string confPath = Utils::String::format("INPUT P%iPATH", player + 1);
+		std::string confName = Utils::String::format("{} INPUT P%iNAME", systemName, player + 1);
+		std::string confGuid = Utils::String::format("{} INPUT P%iGUID", systemName, player + 1);
+		std::string confPath = Utils::String::format("{} INPUT P%iPATH", systemName, player + 1);
 
 		std::string label = Utils::String::format(gettext_playerid.c_str(), player + 1);
 
@@ -168,12 +168,12 @@ GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window*
 				found = true;
 				alreadyTaken.push_back(deviceID);
 
-				LOG(LogWarning) << "adding entry for player" << player << " (selected): " << config->getDeviceName() << "  " << config->getDeviceGUIDString() << "  " << config->getDevicePath();
+				LOG(LogWarning) << "adding entry for " << systemName << " for player" << player << " (selected): " << config->getDeviceName() << "  " << config->getDeviceGUIDString() << "  " << config->getDevicePath();
 				inputOptionList->add(displayName, newInputConfig, true);
 			}
 			else
 			{
-				LOG(LogInfo) << "adding entry for player" << player << " (not selected): " << config->getDeviceName() << "  " << config->getDeviceGUIDString() << "  " << config->getDevicePath();
+				LOG(LogInfo) << "adding entry for " << systemName << " for player" << player << " (not selected): " << config->getDeviceName() << "  " << config->getDeviceGUIDString() << "  " << config->getDevicePath();
 				inputOptionList->add(displayName, newInputConfig, false);
 			}
 		}
@@ -192,9 +192,9 @@ GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window*
 
 		for (int player = 0; player < MAX_PLAYERS; player++)
 		{
-			std::string confName = Utils::String::format("INPUT P%iNAME", player + 1);
-			std::string confGuid = Utils::String::format("INPUT P%iGUID", player + 1);
-			std::string confPath = Utils::String::format("INPUT P%iPATH", player + 1);
+			std::string confName = Utils::String::format("{} INPUT P%iNAME", systemName, player + 1);
+			std::string confGuid = Utils::String::format("{} INPUT P%iGUID", systemName, player + 1);
+			std::string confPath = Utils::String::format("{} INPUT P%iPATH", systemName, player + 1);
 
 			auto input = options.at(player);
 
@@ -219,7 +219,7 @@ GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window*
 			Settings::getInstance()->saveFile();
 
 		// this is dependant of this configuration, thus update it
-		InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
+		// InputManager::getInstance()->computeLastKnownPlayersDeviceIndexes();
 	});
 
 }
