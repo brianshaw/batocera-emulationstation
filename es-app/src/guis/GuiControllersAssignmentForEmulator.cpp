@@ -35,12 +35,12 @@ std::string GuiControllersAssignmentForEmulator::getControllersSettingsLabel()
 	return controllers_settings_label;
 }
 
-void GuiControllersAssignmentForEmulator::openControllersSettings(Window* wnd, const char* systemName)
+void GuiControllersAssignmentForEmulator::openControllersSettings(Window* wnd, std::string systemName)
 {
 	wnd->pushGui(new GuiControllersAssignmentForEmulator(wnd, systemName));
 }
 
-GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window* wnd, const char* systemName) : GuiSettings(wnd, controllers_settings_label.c_str())
+GuiControllersAssignmentForEmulator::GuiControllersAssignmentForEmulator(Window* wnd, std::string systemName) : GuiSettings(wnd, controllers_settings_label.c_str())
 {
 	Window* window = mWindow;
 

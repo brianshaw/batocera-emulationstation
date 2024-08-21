@@ -24,9 +24,9 @@ class GuiControllersAssignmentForEmulator : public GuiSettings
 {
 public:
 	static std::string getControllersSettingsLabel();
-	static void openControllersSettings(Window* wnd, const char* systemName);
+	static void openControllersSettings(Window* wnd, std::string systemName);
 	
-	GuiControllersAssignmentForEmulator(Window* wnd, const char* systemName);
+	GuiControllersAssignmentForEmulator(Window* wnd, std::string systemName);
 	// ~GuiControllersAssignmentForEmulator();
 
 private:
