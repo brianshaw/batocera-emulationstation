@@ -613,6 +613,7 @@ bool InputManager::parseEvent(const SDL_Event& ev, Window* window)
 			std::string addedDeviceName;
 			bool isWheel = false;
 			auto id = SDL_JoystickGetDeviceInstanceID(ev.jdevice.which);
+			LOG(LogError) << "Joystick added : " << ev.jdevice.which << " (instance ID: " << id << ").";
 			auto it = std::find_if(mInputConfigs.cbegin(), mInputConfigs.cend(), [id](const std::pair<SDL_JoystickID, InputConfig*> & t) { return t.second != nullptr && t.second->getDeviceId() == id; });
 			if (it == mInputConfigs.cend())
 				addedDeviceName = SDL_JoystickNameForIndex(ev.jdevice.which);
