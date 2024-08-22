@@ -1290,6 +1290,7 @@ void InputManager::updateBatteryLevel(int id, const std::string& device, const s
 
 std::vector<InputConfig*> InputManager::getInputConfigs()
 {
+	LOG(LogError) << "getInputConfigs";
 	std::vector<InputConfig*> ret;
 
 	std::map<int, InputConfig*> playerJoysticks = computePlayersConfigs();
