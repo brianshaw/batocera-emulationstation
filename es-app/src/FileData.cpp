@@ -672,6 +672,8 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	if (system == nullptr)
 		return false;
 
+	InputManager::getInstance()->loadControllerDefaultsForSystem(system->getName());
+	
 	std::string command = getlaunchCommand(options);
 	if (command.empty())
 		return false;
@@ -685,7 +687,6 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	const std::string rom = Utils::FileSystem::getEscapedPath(getPath());
 	const std::string basename = Utils::FileSystem::getStem(getPath());
 
-	InputManager::getInstance()->loadControllerDefaultsForSystem(system->getName());
 	Scripting::fireEvent("game-start", rom, basename, getName());
 
 	time_t tstart = time(NULL);
