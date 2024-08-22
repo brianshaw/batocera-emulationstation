@@ -1088,7 +1088,6 @@ int InputManager::getNumConfiguredDevices()
 
 void InputManager::computeLastKnownPlayersDeviceIndexes() 
 {
-	LOG(LogError) << "computeLastKnownPlayersDeviceIndexes";
 	std::map<int, InputConfig*> playerJoysticks = computePlayersConfigs();
 
 	m_lastKnownPlayersDeviceIndexes.clear();
@@ -1109,7 +1108,6 @@ void InputManager::computeLastKnownPlayersDeviceIndexes()
 
 std::map<int, InputConfig*> InputManager::computePlayersConfigs()
 {
-	LOG(LogError) << "computePlayersConfigs";
 	std::unique_lock<std::mutex> lock(mJoysticksLock);
 
 	// 1. Recuperer les configurated
@@ -1130,7 +1128,6 @@ std::map<int, InputConfig*> InputManager::computePlayersConfigs()
 	for (int player = 0; player < MAX_PLAYERS; player++)
 	{
 		std::string playerConfigPath = Settings::getInstance()->getString(Utils::String::format("INPUT P%iPATH", player + 1));
-		LOG(LogError) << "computePlayersConfigs : Player " << player << " => " << playerConfigPath;
 		if (!playerConfigPath.empty())
 		{
 			for (auto it1 = availableConfigured.begin(); it1 != availableConfigured.end(); ++it1)
@@ -1230,7 +1227,6 @@ std::map<int, InputConfig*> InputManager::computePlayersConfigs()
 }
 
 std::string InputManager::configureEmulators() {
-	LOG(LogError) << "configureEmulators";
   std::map<int, InputConfig*> playerJoysticks = computePlayersConfigs();
   std::stringstream command;
 
@@ -1291,7 +1287,6 @@ void InputManager::updateBatteryLevel(int id, const std::string& device, const s
 
 std::vector<InputConfig*> InputManager::getInputConfigs()
 {
-	LOG(LogError) << "getInputConfigs";
 	std::vector<InputConfig*> ret;
 
 	std::map<int, InputConfig*> playerJoysticks = computePlayersConfigs();
