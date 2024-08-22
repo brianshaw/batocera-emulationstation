@@ -1128,6 +1128,7 @@ std::map<int, InputConfig*> InputManager::computePlayersConfigs()
 	for (int player = 0; player < MAX_PLAYERS; player++)
 	{
 		std::string playerConfigPath = Settings::getInstance()->getString(Utils::String::format("INPUT P%iPATH", player + 1));
+		LOG(LogError) << "computePlayersConfigs : Player " << player << " => " << playerConfigPath;
 		if (!playerConfigPath.empty())
 		{
 			for (auto it1 = availableConfigured.begin(); it1 != availableConfigured.end(); ++it1)
