@@ -46,7 +46,7 @@ GuiControllersAssignmentsPerEmulator::GuiControllersAssignmentsPerEmulator(Windo
 {
 	Window* window = mWindow;
 
-	addGroup(_("TESTING"));
+	addGroup(_("Emulator Systems"));
 	std::string systemName;
 
 	for (auto system : SystemData::sSystemVector)
@@ -62,9 +62,4 @@ GuiControllersAssignmentsPerEmulator::GuiControllersAssignmentsPerEmulator(Windo
 			}
 		}
 	}
-}
-
-void GuiControllersAssignmentsPerEmulator::test_func()
-{
-	LOG(LogError) << "test_func()";
 }

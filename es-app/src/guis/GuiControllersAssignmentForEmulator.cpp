@@ -236,16 +236,3 @@ GuiControllersAssignmentForEmulator::~GuiControllersAssignmentForEmulator()
 {
 	clearLoadedInput();
 }
-
-void GuiControllersAssignmentForEmulator::test_func()
-{
-	LOG(LogError) << "test_func()";
-}
-// mStringMap["INPUT P1NAME"] = "DEFAULT";
-// 	mStringMap["INPUT P2NAME"] = "DEFAULT";
-// 	mStringMap["INPUT P3NAME"] = "DEFAULT";
-// 	mStringMap["INPUT P4NAME"] = "DEFAULT";
-// 	mStringMap["INPUT P5NAME"] = "DEFAULT";
-// 	mStringMap["INPUT P6NAME"] = "DEFAULT";
-// 	mStringMap["INPUT P7NAME"] = "DEFAULT";
-// 	mStringMap["INPUT P8NAME"] = "DEFAULT";

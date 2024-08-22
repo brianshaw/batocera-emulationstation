@@ -30,7 +30,6 @@ public:
 	// ~GuiControllersAssignmentsPerEmulator();
 
 private:
-void test_func();
 // 	void openControllersSpecificSettings_sindengun();
 // 	void openControllersSpecificSettings_wiigun();
 // 	void openControllersSpecificSettings_steamdeckgun();
