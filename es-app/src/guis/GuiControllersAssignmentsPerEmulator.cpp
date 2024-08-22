@@ -51,7 +51,7 @@ GuiControllersAssignmentsPerEmulator::GuiControllersAssignmentsPerEmulator(Windo
 
 	for (auto system : SystemData::sSystemVector)
 	{
-		if (system->isVisible() && system->isGameSystem())
+		if (system->isVisible() && system->isGameSystem() && !system->isCollection())
 		{
 			// if (system->getName() != "all")
 			// {
