@@ -1088,6 +1088,7 @@ int InputManager::getNumConfiguredDevices()
 
 void InputManager::computeLastKnownPlayersDeviceIndexes() 
 {
+	LOG(LogError) << "computeLastKnownPlayersDeviceIndexes";
 	std::map<int, InputConfig*> playerJoysticks = computePlayersConfigs();
 
 	m_lastKnownPlayersDeviceIndexes.clear();
@@ -1108,6 +1109,7 @@ void InputManager::computeLastKnownPlayersDeviceIndexes()
 
 std::map<int, InputConfig*> InputManager::computePlayersConfigs()
 {
+	LOG(LogError) << "computePlayersConfigs";
 	std::unique_lock<std::mutex> lock(mJoysticksLock);
 
 	// 1. Recuperer les configurated
