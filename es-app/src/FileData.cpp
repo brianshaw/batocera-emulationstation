@@ -672,6 +672,8 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	if (system == nullptr)
 		return false;
 
+	InputManager::getInstance()->loadControllerDefaultsForSystem(system->getName());
+	
 	std::string command = getlaunchCommand(options);
 	if (command.empty())
 		return false;
@@ -715,6 +717,7 @@ bool FileData::launchGame(Window* window, LaunchGameOptions options)
 	if (!p2kConv.empty()) // delete .keys file if it has been converted from p2k
 		Utils::FileSystem::removeFile(p2kConv);
 
+	InputManager::getInstance()->resetControllerDefaults();
 	Scripting::fireEvent("game-end");
 	
 	if (!hideWindow && Settings::getInstance()->getBool("HideWindowFullReinit"))

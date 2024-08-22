@@ -18,6 +18,7 @@
 #include "Paths.h"
 #include "GunManager.h"
 #include "renderers/Renderer.h"
+#include "SystemConf.h"
 
 #ifdef HAVE_UDEV
 #include <libudev.h>
@@ -1087,6 +1088,7 @@ int InputManager::getNumConfiguredDevices()
 
 void InputManager::computeLastKnownPlayersDeviceIndexes() 
 {
+	LOG(LogError) << "computeLastKnownPlayersDeviceIndexes";
 	std::map<int, InputConfig*> playerJoysticks = computePlayersConfigs();
 
 	m_lastKnownPlayersDeviceIndexes.clear();
@@ -1107,6 +1109,7 @@ void InputManager::computeLastKnownPlayersDeviceIndexes()
 
 std::map<int, InputConfig*> InputManager::computePlayersConfigs()
 {
+	LOG(LogError) << "computePlayersConfigs";
 	std::unique_lock<std::mutex> lock(mJoysticksLock);
 
 	// 1. Recuperer les configurated
@@ -1127,6 +1130,7 @@ std::map<int, InputConfig*> InputManager::computePlayersConfigs()
 	for (int player = 0; player < MAX_PLAYERS; player++)
 	{
 		std::string playerConfigPath = Settings::getInstance()->getString(Utils::String::format("INPUT P%iPATH", player + 1));
+		LOG(LogError) << "computePlayersConfigs : Player " << player << " => " << playerConfigPath;
 		if (!playerConfigPath.empty())
 		{
 			for (auto it1 = availableConfigured.begin(); it1 != availableConfigured.end(); ++it1)
@@ -1226,6 +1230,7 @@ std::map<int, InputConfig*> InputManager::computePlayersConfigs()
 }
 
 std::string InputManager::configureEmulators() {
+	LOG(LogError) << "configureEmulators";
   std::map<int, InputConfig*> playerJoysticks = computePlayersConfigs();
   std::stringstream command;
 
@@ -1286,6 +1291,7 @@ void InputManager::updateBatteryLevel(int id, const std::string& device, const s
 
 std::vector<InputConfig*> InputManager::getInputConfigs()
 {
+	LOG(LogError) << "getInputConfigs";
 	std::vector<InputConfig*> ret;
 
 	std::map<int, InputConfig*> playerJoysticks = computePlayersConfigs();
@@ -1310,4 +1316,54 @@ void InputManager::sendMouseClick(Window* window, int button)
 {
 	window->input(getInputConfigByDevice(DEVICE_MOUSE), Input(DEVICE_MOUSE, TYPE_BUTTON, button, true, false));
 	window->input(getInputConfigByDevice(DEVICE_MOUSE), Input(DEVICE_MOUSE, TYPE_BUTTON, button, false, false));
+}
+
+void InputManager::loadControllerDefaultsForSystem(std::string systemName)
+{
+	LOG(LogError) << "Loading controller defaults for system " << systemName << " for MAX_PLAYERS: " << MAX_PLAYERS;
+	for (int player = 0; player < MAX_PLAYERS; player++) 
+	{
+		// if (playerJoysticks.find(player) != playerJoysticks.cend())
+		// 	continue;
+
+		std::string systemPlayerConfigName = Settings::getInstance()->getString(Utils::String::format("%s INPUT P%iNAME", systemName.c_str(), player + 1));
+		std::string systemPlayerConfigGuid = Settings::getInstance()->getString(Utils::String::format("%s INPUT P%iGUID", systemName.c_str(), player + 1));
+		std::string systemPlayerConfigPath = Settings::getInstance()->getString(Utils::String::format("%s INPUT P%iPATH", systemName.c_str(), player + 1));
+			LOG(LogError) << "Controller defaults for system " << systemName << " player " << (player + 1) << " : " << systemPlayerConfigName << " / " << systemPlayerConfigGuid;
+		if (!systemPlayerConfigName.empty()) {
+			LOG(LogError) << "Controller defaults for system " << systemName << " player " << (player + 1) << " found.";
+			// std::string playerConfigName = Settings::getInstance()->getString(Utils::String::format("INPUT P%iNAME", player + 1));
+			// std::string playerConfigGuid = Settings::getInstance()->getString(Utils::String::format("INPUT P%iGUID", player + 1));
+			Settings::getInstance()->setString(Utils::String::format("INPUT P%iNAME", player + 1), systemPlayerConfigName);
+			Settings::getInstance()->setString(Utils::String::format("INPUT P%iGUID", player + 1), systemPlayerConfigGuid);
+			Settings::getInstance()->setString(Utils::String::format("INPUT P%iPATH", player + 1), systemPlayerConfigPath);
+					// changed |= Settings::getInstance()->setString(confName, selected->name);
+					// changed |= Settings::getInstance()->setString(confGuid, selected->guid);
+					// changed |= Settings::getInstance()->setString(confPath, selected->path);
+		} else {
+			LOG(LogError) << "No controller defaults for system " << systemName << " player " << (player + 1);
+			Settings::getInstance()->setString(Utils::String::format("INPUT P%iNAME", player + 1), "DEFAULT");
+			Settings::getInstance()->setString(Utils::String::format("INPUT P%iGUID", player + 1), "");
+			Settings::getInstance()->setString(Utils::String::format("INPUT P%iPATH", player + 1), "");
+		}
+	}
+	// bool changed = false;
+	// if (changed)
+	computeLastKnownPlayersDeviceIndexes();
+	Settings::getInstance()->saveFile();
+	SystemConf::getInstance()->saveSystemConf();
+}
+
+void InputManager::resetControllerDefaults()
+{
+	LOG(LogError) << "resetControllerDefaults";
+	for (int player = 0; player < MAX_PLAYERS; player++) 
+	{
+		Settings::getInstance()->setString(Utils::String::format("INPUT P%iNAME", player + 1), "DEFAULT");
+		Settings::getInstance()->setString(Utils::String::format("INPUT P%iGUID", player + 1), "");
+		Settings::getInstance()->setString(Utils::String::format("INPUT P%iPATH", player + 1), "");
+	}
+	computeLastKnownPlayersDeviceIndexes();
+	Settings::getInstance()->saveFile();
+	SystemConf::getInstance()->saveSystemConf();
 }
