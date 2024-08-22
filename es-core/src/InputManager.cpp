@@ -1230,6 +1230,7 @@ std::map<int, InputConfig*> InputManager::computePlayersConfigs()
 }
 
 std::string InputManager::configureEmulators() {
+	LOG(LogError) << "configureEmulators";
   std::map<int, InputConfig*> playerJoysticks = computePlayersConfigs();
   std::stringstream command;
 
