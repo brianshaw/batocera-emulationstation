@@ -21,6 +21,7 @@
 #include "guis/GuiSystemInformation.h"
 #include "guis/GuiScraperSettings.h"
 #include "guis/GuiControllersSettings.h"
+#include "guis/GuiControllersAssignmentsPerEmulator.h"
 #include "views/UIModeController.h"
 #include "views/ViewController.h"
 #include "CollectionSystemManager.h"
